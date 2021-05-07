@@ -68,11 +68,6 @@ to quickly create a Cobra application.`,
 		resp, err := client.Do(req)
 		defer resp.Body.Close()
 
-		//body, err := ioutil.ReadAll(resp.Body)
-		//if err != nil {
-		//	fmt.Println("Error in reading the resp body: ", err)
-		//	return
-		//}
 		var m map[string]ticker
 		if err := json.NewDecoder(resp.Body).Decode(&m); err != nil {
 			fmt.Println("Error in decoding the JSON: ", err)
