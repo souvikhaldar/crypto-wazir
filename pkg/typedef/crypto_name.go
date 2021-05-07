@@ -39,7 +39,7 @@ func GetMtnFromCC(arg CryptoCurrency) string {
 
 func GetCCFromMtn(s string) CryptoCurrency {
 	switch s {
-	case "btcnr":
+	case "btcinr":
 		return BTC
 	case "ethinr":
 		return ETH
