@@ -11,4 +11,5 @@ var(
 	ETH CryptoCurrency = "eth"
 	ETC CryptoCurrency = "etc"
 	DOGE CryptoCurrency = "doge"
+	INVALID CryptoCurrency = "INVALID"
 )

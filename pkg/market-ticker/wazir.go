@@ -1,10 +1,13 @@
 package market-ticker
 
 type Wazir struct{
+	Ticker map[string]typedef.Ticker
 }
 
 func NewWazir()*Wazir{
-	return &Wazir{}
+	return &Wazir{
+		Ticker: nil,
+	}
 }
 
 
@@ -26,8 +29,40 @@ func (w *Wazir)GetAllMarketTicker()(m map[string]interface{}, err error){
 
 		resp, err := client.Do(req)
 		defer resp.Body.Close()
-		if err := json.NewDecoder(resp.Body).Decode(&m); err != nil {
-			fmt.Println("Error in decoding the JSON: ", err)
-			return 
+
+		m,err := ioutil.ReadAll(resp.Body)
+		if err != nil {
+			fmt.Println("Error in reading resp:", err)
 		}
+		mt := make(map[string]Ticker)
+		t, err :- json.Unmarshal(m,&mt)
+		if err != nil{
+			return
+		}
+		w.Ticker = mt
+		return
+}
+
+GetMarketTicker(c typedef.CryptoCurrency,resp map[string]typedef.Ticker)(*typedef.Ticker,err err){
+	tn := GetTickerName(c)
+	t,ok := resp[tn]
+	if !ok{
+		return nil,fmt.Errorf("No entry for %s",c)
+	}
+	return t,nil
+}
+
+func (w *Wazir)GetLatestPrice(c typedef.CryptoCurrency)(price float64,err error){
+
+	if w.Ticker != nil{
+		t, err := GetMarketTicker(c,w.Ticker)
+		if t !=nil{
+			p, err := strconv.Itoa()
+		}
+	}
+	m, err := w.GetAllMarketTicker()
+	if err != nil{
+		return 
+	}
+
 }
