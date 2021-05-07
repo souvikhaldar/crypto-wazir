@@ -50,6 +50,7 @@ to quickly create a Cobra application.`,
 			)
 			if err != nil {
 				fmt.Println("Error in getting price: ", err)
+				continue
 			}
 			time.Sleep(10 * time.Second)
 
@@ -60,9 +61,11 @@ to quickly create a Cobra application.`,
 			if price >= float64(upper) {
 				fmt.Println("Exceeded target")
 				fmt.Println("Price is: ", price)
+				fmt.Println("Time: ", time.Now())
 			} else if price <= float64(lower) {
 				fmt.Println("Price below lower limit!")
 				fmt.Println("Price is: ", price)
+				fmt.Println("Time: ", time.Now())
 			}
 
 		}
@@ -71,8 +74,8 @@ to quickly create a Cobra application.`,
 
 func init() {
 	rootCmd.AddCommand(monitorCmd)
-	rootCmd.PersistentFlags().IntVarP(&upper, "upper", "u", 1, "Upper limit or target")
-	rootCmd.PersistentFlags().IntVarP(&lower, "lower", "l", 1, "Lower limit")
+	rootCmd.PersistentFlags().IntVarP(&upper, "upper", "u", 99999999, "Upper limit or target")
+	rootCmd.PersistentFlags().IntVarP(&lower, "lower", "l", 0, "Lower limit")
 
 	// Here you will define your flags and configuration settings.
 

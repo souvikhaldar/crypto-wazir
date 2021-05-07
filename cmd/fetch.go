@@ -46,6 +46,7 @@ to quickly create a Cobra application.`,
 		)
 		if err != nil {
 			fmt.Println("Error in getting price: ", err)
+			return
 		}
 		fmt.Printf("Current price of %s : %f\n", cryptoName, price)
 		return
