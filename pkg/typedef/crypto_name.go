@@ -11,22 +11,30 @@ var (
 	ETH     CryptoCurrency = "eth"
 	ETC     CryptoCurrency = "etc"
 	DOGE    CryptoCurrency = "doge"
+	ADA     CryptoCurrency = "ada"
+	PUSH    CryptoCurrency = "push"
+	BNB     CryptoCurrency = "bnb"
 	INVALID CryptoCurrency = "INVALID"
 )
 
 func GetMtnFromCC(arg CryptoCurrency) string {
-	switch arg {
-	case BTC:
-		return "btcinr"
-	case ETH:
-		return "ethinr"
-	case ETC:
-		return "etcinr"
-	case DOGE:
-		return "dogeinr"
-	default:
-		return ""
-	}
+	//switch arg {
+	//case BTC:
+	//	return "btcinr"
+	//case ETH:
+	//	return "ethinr"
+	//case ETC:
+	//	return "etcinr"
+	//case DOGE:
+	//	return "dogeinr"
+	//case BNB:
+	//	return "bnbinr"
+	//case ADA:
+	//	return ADA
+	//default:
+	//	return ""
+	//}
+	return arg.String() + "inr"
 }
 
 func GetCCFromMtn(s string) CryptoCurrency {
@@ -39,6 +47,12 @@ func GetCCFromMtn(s string) CryptoCurrency {
 		return ETC
 	case "dogeinr":
 		return DOGE
+	case "bnbinr":
+		return BNB
+	case "adainr":
+		return ADA
+	case "pushinr":
+		return PUSH
 	default:
 		return INVALID
 	}
