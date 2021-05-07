@@ -51,6 +51,12 @@ to quickly create a Cobra application.`,
 			if err != nil {
 				fmt.Println("Error in getting price: ", err)
 			}
+			time.Sleep(10 * time.Second)
+
+			if lower == upper {
+				fmt.Println("Price is: ", price)
+				continue
+			}
 			if price >= float64(upper) {
 				fmt.Println("Exceeded target")
 				fmt.Println("Price is: ", price)
@@ -58,10 +64,6 @@ to quickly create a Cobra application.`,
 				fmt.Println("Price below lower limit!")
 				fmt.Println("Price is: ", price)
 			}
-			if lower == upper == 1 {
-				fmt.Println("Price is: ", price)
-			}
-			time.Sleep(10 * time.Second)
 
 		}
 	},
