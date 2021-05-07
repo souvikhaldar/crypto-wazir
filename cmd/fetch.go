@@ -19,6 +19,7 @@ import (
 	"fmt"
 
 	"github.com/souvikhaldar/cw/pkg/market_ticker"
+	"github.com/souvikhaldar/cw/pkg/typedef"
 	"github.com/spf13/cobra"
 )
 
@@ -36,11 +37,12 @@ This application is a tool to generate the needed files
 to quickly create a Cobra application.`,
 	Run: func(cmd *cobra.Command, args []string) {
 		fmt.Println("Fetching details of:", cryptoName)
+		c := typedef.ConvertLingo(cryptoName)
 
 		mt := market_ticker.NewWazir()
 		price, err := market_ticker.GetPrice(
 			mt,
-			cryptoName,
+			c,
 		)
 		if err != nil {
 			fmt.Println("Error in getting price: ", err)
