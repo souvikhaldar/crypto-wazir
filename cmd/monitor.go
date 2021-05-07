@@ -17,9 +17,15 @@ package cmd
 
 import (
 	"fmt"
+	"time"
 
+	"github.com/souvikhaldar/cw/pkg/market_ticker"
+	"github.com/souvikhaldar/cw/pkg/typedef"
 	"github.com/spf13/cobra"
 )
+
+var upper int
+var lower int
 
 // monitorCmd represents the monitor command
 var monitorCmd = &cobra.Command{
@@ -32,12 +38,39 @@ Cobra is a CLI library for Go that empowers applications.
 This application is a tool to generate the needed files
 to quickly create a Cobra application.`,
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("monitor called")
+		fmt.Println("Monitoring: ", cryptoName)
+		mt := market_ticker.NewWazir()
+
+		c := typedef.ConvertLingo(cryptoName)
+
+		for {
+			price, err := market_ticker.GetPrice(
+				mt,
+				c,
+			)
+			if err != nil {
+				fmt.Println("Error in getting price: ", err)
+			}
+			if price >= float64(upper) {
+				fmt.Println("Exceeded target")
+				fmt.Println("Price is: ", price)
+			} else if price <= float64(lower) {
+				fmt.Println("Price below lower limit!")
+				fmt.Println("Price is: ", price)
+			}
+			if lower == upper == 1 {
+				fmt.Println("Price is: ", price)
+			}
+			time.Sleep(10 * time.Second)
+
+		}
 	},
 }
 
 func init() {
 	rootCmd.AddCommand(monitorCmd)
+	rootCmd.PersistentFlags().IntVarP(&upper, "upper", "u", 1, "Upper limit or target")
+	rootCmd.PersistentFlags().IntVarP(&lower, "lower", "l", 1, "Lower limit")
 
 	// Here you will define your flags and configuration settings.
 

@@ -16,15 +16,13 @@ limitations under the License.
 package cmd
 
 import (
-	"encoding/json"
 	"fmt"
-	"net/http"
 
+	"github.com/souvikhaldar/cw/pkg/market_ticker"
 	"github.com/spf13/cobra"
 )
 
 var fetchURL string = "/api/v2/tickers"
-
 
 // fetchCmd represents the fetch command
 var fetchCmd = &cobra.Command{
@@ -37,30 +35,17 @@ Cobra is a CLI library for Go that empowers applications.
 This application is a tool to generate the needed files
 to quickly create a Cobra application.`,
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Fetching info of ", cryptoName)
+		fmt.Println("Fetching details of:", cryptoName)
 
-		client := &http.Client{}
-		req, err := http.NewRequest(
-			"GET",
-			baseURL+fetchURL,
-			nil,
+		mt := market_ticker.NewWazir()
+		price, err := market_ticker.GetPrice(
+			mt,
+			cryptoName,
 		)
 		if err != nil {
-			fmt.Println("Unable to create the request: ", err)
-			return
+			fmt.Println("Error in getting price: ", err)
 		}
-		req.Header.Add("Accept", "application/json")
-
-		resp, err := client.Do(req)
-		defer resp.Body.Close()
-
-		var m map[string]ticker
-		if err := json.NewDecoder(resp.Body).Decode(&m); err != nil {
-			fmt.Println("Error in decoding the JSON: ", err)
-			return
-		}
-
-		fmt.Printf("Current price of %s : %s\n", cryptoName, m[cryptoName].Last)
+		fmt.Printf("Current price of %s : %f\n", cryptoName, price)
 		return
 
 	},

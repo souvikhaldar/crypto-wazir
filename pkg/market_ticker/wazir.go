@@ -1,77 +1,76 @@
 package market_ticker
 
 import (
+	"encoding/json"
+	"fmt"
+	"net/http"
+	"strconv"
+
 	"github.com/souvikhaldar/cw/pkg/typedef"
 )
 
-type Wazir struct{
-	Ticker map[string]typedef.Ticker
+type Wazir struct {
 }
 
-func NewWazir()*Wazir{
-	return &Wazir{
-		Ticker: nil,
-	}
-}
-
-
-func (w *Wazir)GetAllMarketTicker()(m map[string]interface{}, err error){
-
-		client := &http.Client{}
-		var m map[string]interface{}
-
-		req, err := http.NewRequest(
-			"GET",
-			"https://api.wazirx.com/api/v2/tickers",
-			nil,
-		)
-		if err != nil {
-			fmt.Println("Unable to create the request: ", err)
-			return
-		}
-		req.Header.Add("Accept", "application/json")
-
-		resp, err := client.Do(req)
-		defer resp.Body.Close()
-
-		m,err := ioutil.ReadAll(resp.Body)
-		if err != nil {
-			fmt.Println("Error in reading resp:", err)
-		}
-		mt := make(map[string]Ticker)
-		t, err := json.Unmarshal(m,&mt)
-		if err != nil{
-			return
-		}
-		w.Ticker = mt
-		return
+func NewWazir() *Wazir {
+	return &Wazir{}
 }
 
 func GetMarketTicker(
-	c typedef.CryptoCurrency,
+	cc typedef.CryptoCurrency,
 	resp map[string]typedef.Ticker,
-)(*typedef.Ticker,err error){
-	tn := GetTickerName(c)
-	t,ok := resp[tn]
-	if !ok{
-		return nil,fmt.Errorf("No entry for %s",c)
+) (*typedef.Ticker, error) {
+
+	tn := typedef.GetMtnFromCC(cc)
+	t, ok := resp[tn]
+	if !ok {
+		return nil, fmt.Errorf("No entry for %s", cc)
 	}
-	return &t,nil
+	return &t, nil
 }
 
-func (w *Wazir)GetLatestPrice(c typedef.CryptoCurrency)(price float64,err error){
+func (w *Wazir) GetAllMarketTicker() (
+	m map[string]typedef.Ticker,
+	err error,
+) {
 
-	if w.Ticker != nil{
-		t, err := GetMarketTicker(c,w.Ticker)
-		if t !=nil{
-			price, _ = strconv.Atoi(t.Last)
-			return
+	client := &http.Client{}
 
-		}
+	req, err := http.NewRequest(
+		"GET",
+		"https://api.wazirx.com/api/v2/tickers",
+		nil,
+	)
+	if err != nil {
+		fmt.Println("Unable to create the request: ", err)
+		return
 	}
+	req.Header.Add("Accept", "application/json")
+
+	resp, err := client.Do(req)
+	defer resp.Body.Close()
+
+	err = json.NewDecoder(resp.Body).Decode(&m)
+	if err != nil {
+		fmt.Println("Error in reading resp:", err)
+	}
+	return
+}
+
+func (w *Wazir) GetLatestPrice(mtn string) (price float64, err error) {
+
 	m, err := w.GetAllMarketTicker()
-	if err != nil{
-		return 
+	if err != nil {
+		return
 	}
+
+	cc := typedef.GetCCFromMtn(mtn)
+	t, err := GetMarketTicker(cc, m)
+	if err != nil || t == nil {
+		return
+
+	}
+	price, err = strconv.ParseFloat(t.Last, 64)
+	return
 
 }

@@ -14,16 +14,3 @@ type Ticker struct {
 	Type      string      `json:"type"`
 	Volume    string      `json:"volume"`
 }
-
-GetTickerName(arg CryptoCurrency)string{
-	switch arg{
-	case BTC:
-		return "btcinr"
-	case ETH:
-		return "ethinr"
-	case ETC:
-		return "etcinr"
-	default:
-		return INVALID
-	}
-}
