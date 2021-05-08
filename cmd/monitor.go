@@ -54,7 +54,7 @@ to quickly create a Cobra application.`,
 			}
 			time.Sleep(10 * time.Second)
 
-			if lower == upper {
+			if lower == 0 && upper == 999999999 {
 				fmt.Println("Price is: ", price)
 				continue
 			}
@@ -74,7 +74,7 @@ to quickly create a Cobra application.`,
 
 func init() {
 	rootCmd.AddCommand(monitorCmd)
-	rootCmd.PersistentFlags().IntVarP(&upper, "upper", "u", 99999999, "Upper limit or target")
+	rootCmd.PersistentFlags().IntVarP(&upper, "upper", "u", 999999999, "Upper limit or target")
 	rootCmd.PersistentFlags().IntVarP(&lower, "lower", "l", 0, "Lower limit")
 
 	// Here you will define your flags and configuration settings.
