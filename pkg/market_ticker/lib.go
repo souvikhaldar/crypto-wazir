@@ -10,3 +10,13 @@ type Repo interface {
 func GetPrice(r Repo, mtn string) (float64, error) {
 	return r.GetLatestPrice(mtn)
 }
+func GetAllDetails(r Repo, mtn string) (*typedef.Ticker, error) {
+	m, err := r.GetAllMarketTicker()
+	if err != nil {
+		return nil, err
+	}
+	return GetMarketTicker(
+		typedef.GetCCFromMtn(mtn),
+		m,
+	)
+}

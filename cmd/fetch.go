@@ -28,7 +28,7 @@ var fetchURL string = "/api/v2/tickers"
 // fetchCmd represents the fetch command
 var fetchCmd = &cobra.Command{
 	Use:   "fetch",
-	Short: "A brief description of your command",
+	Short: "Fetches the details of the cypto",
 	Long: `A longer description that spans multiple lines and likely contains examples
 and usage of using your command. For example:
 
@@ -40,15 +40,15 @@ to quickly create a Cobra application.`,
 		c := typedef.ConvertLingo(cryptoName)
 
 		mt := market_ticker.NewWazir()
-		price, err := market_ticker.GetPrice(
+		details, err := market_ticker.GetAllDetails(
 			mt,
 			c,
 		)
-		if err != nil {
+		if err != nil || details == nil {
 			fmt.Println("Error in getting price: ", err)
 			return
 		}
-		fmt.Printf("Current price of %s : %f\n", cryptoName, price)
+		fmt.Printf("Details of %s : %+v\n", cryptoName, *details)
 		return
 
 	},

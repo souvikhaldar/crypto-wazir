@@ -55,16 +55,16 @@ to quickly create a Cobra application.`,
 			time.Sleep(10 * time.Second)
 
 			if lower == 0 && upper == 999999999 {
-				fmt.Println("Price is: ", price)
+				fmt.Printf("Price of %s is:%f\n ", c, price)
 				continue
 			}
 			if price >= float64(upper) {
 				fmt.Println("Exceeded target")
-				fmt.Println("Price is: ", price)
+				fmt.Printf("Price of %s is:%f\n ", c, price)
 				fmt.Println("Time: ", time.Now())
 			} else if price <= float64(lower) {
 				fmt.Println("Price below lower limit!")
-				fmt.Println("Price is: ", price)
+				fmt.Printf("Price of %s is:%f\n ", c, price)
 				fmt.Println("Time: ", time.Now())
 			}
 

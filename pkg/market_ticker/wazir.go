@@ -42,7 +42,6 @@ func (w *Wazir) GetAllMarketTicker() (
 		nil,
 	)
 	if err != nil {
-		fmt.Println("Unable to create the request: ", err)
 		return
 	}
 	req.Header.Add("Accept", "application/json")
@@ -51,9 +50,6 @@ func (w *Wazir) GetAllMarketTicker() (
 	defer resp.Body.Close()
 
 	err = json.NewDecoder(resp.Body).Decode(&m)
-	if err != nil {
-		fmt.Println("Error in reading resp:", err)
-	}
 	return
 }
 
