@@ -49,7 +49,7 @@ to quickly create a Cobra application.`,
 				c,
 			)
 			if err != nil {
-				fmt.Println("Error in getting price: ", err)
+				//fmt.Println("Error in getting price: ", err)
 				continue
 			}
 			time.Sleep(10 * time.Second)
