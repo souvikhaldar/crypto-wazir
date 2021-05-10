@@ -14,6 +14,7 @@ var (
 	ADA     CryptoCurrency = "ada"
 	PUSH    CryptoCurrency = "push"
 	BNB     CryptoCurrency = "bnb"
+	XLM     CryptoCurrency = "xlm"
 	INVALID CryptoCurrency = "INVALID"
 )
 
@@ -53,6 +54,8 @@ func GetCCFromMtn(s string) CryptoCurrency {
 		return ADA
 	case "pushinr":
 		return PUSH
+	case "xlminr":
+		return XLM
 	default:
 		return INVALID
 	}
