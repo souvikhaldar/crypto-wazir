@@ -55,7 +55,7 @@ to quickly create a Cobra application.`,
 			time.Sleep(10 * time.Second)
 
 			if lower == 0 && upper == 999999999 {
-				fmt.Printf("Price of %s is:%f\n ", c, price)
+				fmt.Printf("Price of %s is:%f\n", cryptoName, price)
 				continue
 			}
 			if price >= float64(upper) {

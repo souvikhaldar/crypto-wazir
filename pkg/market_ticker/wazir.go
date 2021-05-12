@@ -56,7 +56,7 @@ func (w *Wazir) GetAllMarketTicker() (
 func (w *Wazir) GetLatestPrice(mtn string) (price float64, err error) {
 
 	m, err := w.GetAllMarketTicker()
-	if err != nil {
+	if err != nil || m == nil {
 		return
 	}
 
