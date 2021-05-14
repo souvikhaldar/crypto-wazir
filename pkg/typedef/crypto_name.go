@@ -15,6 +15,7 @@ var (
 	PUSH    CryptoCurrency = "push"
 	BNB     CryptoCurrency = "bnb"
 	XLM     CryptoCurrency = "xlm"
+	HBAR    CryptoCurrency = "hbar"
 	INVALID CryptoCurrency = "INVALID"
 )
 
@@ -56,6 +57,8 @@ func GetCCFromMtn(s string) CryptoCurrency {
 		return PUSH
 	case "xlminr":
 		return XLM
+	case "hbarinr":
+		return HBAR
 	default:
 		return INVALID
 	}
