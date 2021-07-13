@@ -47,6 +47,9 @@ func (w *Wazir) GetAllMarketTicker() (
 	req.Header.Add("Accept", "application/json")
 
 	resp, err := client.Do(req)
+	if err != nil {
+		return
+	}
 	defer resp.Body.Close()
 
 	err = json.NewDecoder(resp.Body).Decode(&m)
@@ -56,7 +59,7 @@ func (w *Wazir) GetAllMarketTicker() (
 func (w *Wazir) GetLatestPrice(mtn string) (price float64, err error) {
 
 	m, err := w.GetAllMarketTicker()
-	if err != nil {
+	if err != nil || m == nil {
 		return
 	}
 
