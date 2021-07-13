@@ -28,13 +28,8 @@ var fetchURL string = "/api/v2/tickers"
 // fetchCmd represents the fetch command
 var fetchCmd = &cobra.Command{
 	Use:   "fetch",
-	Short: "Fetches the details of the cypto",
-	Long: `A longer description that spans multiple lines and likely contains examples
-and usage of using your command. For example:
-
-Cobra is a CLI library for Go that empowers applications.
-This application is a tool to generate the needed files
-to quickly create a Cobra application.`,
+	Short: "Fetches all the details of the cypto at any time",
+	Long:  ``,
 	Run: func(cmd *cobra.Command, args []string) {
 		fmt.Println("Fetching details of:", cryptoName)
 		c := typedef.ConvertLingo(cryptoName)
