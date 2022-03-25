@@ -38,3 +38,6 @@ The way I would do it is, let's say I've purchased `doge` at 35 INR per coin, so
 The command for this would be:  
 `cw monitor -c doge -l 25 -u 60` here -u flag stands for upper limit and -l stands for lower limit.  
 
+
+### Telegram bot
+Here is the [bot](t.me/go_wazirx_bot)

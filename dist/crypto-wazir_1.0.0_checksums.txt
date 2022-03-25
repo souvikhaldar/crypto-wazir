@@ -1,0 +1,5 @@
+71e340060b4f29d491101d70e238959725a524cdb7a19f5f7498857c27fe4c22  crypto-wazir_1.0.0_darwin_amd64.tar.gz
+7fad5b3e70c769e72fb59d495d0ad916b4e41120780e39062523e86ae588bd20  crypto-wazir_1.0.0_linux_arm64.tar.gz
+f1da43bd55b491b2daa317e5ddd06e8b3687951c6d021c579f41f971e9debeb7  crypto-wazir_1.0.0_darwin_arm64.tar.gz
+f66eee1df6c9da3843f8e2de5317162357d7bfc24f5d622f19e5e5057278507c  crypto-wazir_1.0.0_linux_amd64.tar.gz
+fd622a78f038c2ddf06355bfa99a426620748a51c47cb857f1bf07cb9e0d8d16  crypto-wazir_1.0.0_linux_386.tar.gz
