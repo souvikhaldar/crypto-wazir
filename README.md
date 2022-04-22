@@ -4,8 +4,10 @@
 
 ## Installation
 1. Install Golang on your system.  
-2. Clone this repository.
-3. Run `go install` at the root of this Repository on your terminal and make sure `$GOPATH` is set. If not, you can do `go build` at the root and the binary executable (i.e `cw`) will be available on the current directory. 
+2. Copy link to the binary of your current system from *Releases*
+3. Download it `wget https://github.com/souvikhaldar/crypto-wazir/releases/download/1.0.0/crypto-wazir<version_os>tar.gz`.
+4. Extract it using `tar -xf <filename>.tar.gz`
+5. Make it executable and copy it to $PATH location `chmod +x crypto-wazir && sudo mv crypto-wazir /usr/local/bin/cw`
 
 ## Usage
 ### Fetch the current market information
