@@ -50,16 +50,16 @@ var monitorCmd = &cobra.Command{
 			time.Sleep(10 * time.Second)
 
 			if lower == 0 && upper == 999999999 {
-				fmt.Printf("Price of %s is:%f\n", cryptoName, price)
+				fmt.Printf("%s: %.2f\n", cryptoName, price)
 				continue
 			}
 			if price >= float64(upper) {
 				fmt.Println("Exceeded target")
-				fmt.Printf("Price of %s is:%f\n ", c, price)
+				fmt.Printf("%s: %.2f\n", c, price)
 				fmt.Println("Time: ", time.Now())
 			} else if price <= float64(lower) {
 				fmt.Println("Price below lower limit!")
-				fmt.Printf("Price of %s is:%f\n ", c, price)
+				fmt.Printf("%s: %.2f\n", c, price)
 				fmt.Println("Time: ", time.Now())
 			}
 

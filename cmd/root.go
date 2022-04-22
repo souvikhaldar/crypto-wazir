@@ -19,6 +19,7 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/souvikhaldar/cw/pkg/telegram"
 	"github.com/spf13/cobra"
 
 	homedir "github.com/mitchellh/go-homedir"
@@ -46,6 +47,9 @@ func Execute() {
 }
 
 func init() {
+	go func() {
+		telegram.RunTelegram()
+	}()
 	cobra.OnInitialize(initConfig)
 
 	// Here you will define your flags and configuration settings.
