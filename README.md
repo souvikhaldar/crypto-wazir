@@ -3,11 +3,10 @@
 `cw` is the command line tool that uses **wazirx** public API to track and monitor various crypto-currencies to help make smart decisions for investing. 
 
 ## Installation
-1. Install Golang on your system.  
-2. Copy link to the binary of your current system from *Releases*
-3. Download it `wget https://github.com/souvikhaldar/crypto-wazir/releases/download/1.0.0/crypto-wazir<version_os>tar.gz`.
-4. Extract it using `tar -xf <filename>.tar.gz`
-5. Make it executable and copy it to $PATH location `chmod +x crypto-wazir && sudo mv crypto-wazir /usr/local/bin/cw`
+1. Copy link to the binary of your current system from *Releases*
+2. Download it `wget https://github.com/souvikhaldar/crypto-wazir/releases/download/1.0.0/crypto-wazir<version_os>tar.gz`.
+3. Extract it using `tar -xf <filename>.tar.gz`
+4. Make it executable and copy it to $PATH location `chmod +x crypto-wazir && sudo mv crypto-wazir /usr/local/bin/cw`
 
 ## Usage
 ### Fetch the current market information
